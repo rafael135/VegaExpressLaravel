@@ -1,0 +1,94 @@
+.container-loginPage {
+    height: calc(100vh - 70px);
+    width: 100vw;
+}
+
+.form-login {
+    width: 380px;
+    height: auto;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+form {
+    padding: 1rem;
+    background-color: rgb(54, 57, 60);
+    border-radius: 8px;
+}
+
+form input {
+    background-color: rgb(84, 87, 90) !important;
+    outline: none !important;
+}
+
+form input:focus {
+    border-color: rgb(114, 117, 120);
+    box-shadow: none !important;
+    color: #FFF !important;
+}
+
+form .form-legend {
+    background-color: #141618;
+}
+
+
+.search-bar {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.search-bar form {
+    border: 1px solid rgb(84, 87, 90);
+}
+
+.search-bar #btn-collapse {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.search-bar #btn-collapse.opened {
+    border-bottom-right-radius: 0;
+}
+
+.search-bar #searchInput {
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.search-bar #searchInput.opened {
+    border-bottom-left-radius: 0;
+}
+
+.search-bar .btn-searchBar {
+    height: 58px;
+}
+
+.search-bar .btn-searchBar .btn {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    color: #0d6efd;
+    background-color: #FFF;
+    border: none;
+    transition: all ease 200ms;
+}
+
+.search-bar .btn-searchBar .btn:hover {
+    background-color: #DDD;
+}
+
+.search-bar .btn-searchBar .btn[aria-expanded="false"] i::before {
+    transition: all ease 140ms;
+}
+
+.search-bar .btn-searchBar .btn[aria-expanded="true"] i::before {
+    transform: rotate(180deg);
+    transition: all ease 140ms;
+}
+
+.search-bar .searchBar-inputBorders {
+    border-right: 1px solid rgb(84, 87, 90);
+}
+
+.search-bar #collapseInput-orderDate {
+    border-bottom-left-radius: 8px;
+}

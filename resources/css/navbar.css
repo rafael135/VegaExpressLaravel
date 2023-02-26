@@ -1,0 +1,92 @@
+body {
+    overflow-x: hidden;
+}
+
+nav {
+    height: 70px;
+}
+
+nav.navbar {
+    background-color: #141618;
+    padding: 0;
+}
+
+nav .navbar-brand {
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+nav .bi {
+    font-size: 24px;
+}
+
+nav .navbar-nav {
+
+}
+
+nav .navbar-nav .nav-item {
+    border-radius: 50%;
+    transition: all ease-out 160ms;
+}
+
+nav .navbar-nav .nav-item:hover {
+    background-color: #0c59bd;
+}
+
+nav .navbar-nav .nav-item:hover .bi {
+    color: #FFF;
+}
+
+#btn-user-sideBar:hover i {
+    color: #FFF !important;
+}
+
+#btn-user-sideBar i {
+    font-size: 32px !important;
+}
+
+#asideUser-menu {
+    z-index: 999;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: -300px;
+    transition: all ease 200ms;
+}
+#asideUser-menu.show {
+    right: 0;
+}
+
+#sideBar-menu {
+    width: 300px;
+    background-color: rgb(43, 46, 49) !important;
+    border-bottom-left-radius: 12px;
+}
+
+#dropdownUser1::after {
+    transition: all ease 200ms;
+}
+
+#dropdownUser1[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+ul.nav .nav-link {
+    
+}
+
+ul.nav .nav-link.link-bi {
+    padding-left: 12px !important;
+}
+
+ul.nav .nav-link:hover {
+    background-color: #1b79d1;
+    color: #FFF;
+}
+
+ul.nav .nav-link.active {
+    background-color: #0c59bd;
+    color: #FFF;
+}
