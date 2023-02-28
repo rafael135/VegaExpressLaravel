@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products_evaluations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("product_id");
-            $table->integer("evaluations_qnt");
-            $table->float("total_grade");
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign("author_id")
+                ->references("id")
+            ->on("users");
         });
     }
 
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products_evaluations');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign("author_id");
+        });
     }
 };

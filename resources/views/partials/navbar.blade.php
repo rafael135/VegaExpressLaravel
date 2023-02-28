@@ -37,7 +37,7 @@
                     <i id="img-usr" class="bi bi-person-circle me-2"></i>
                 @endif
                 <strong>@if($loggedUser != false) 
-                    {{$loggedUser->getName()}}
+                    {{$loggedUser->name}}
                 @endif</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
@@ -54,13 +54,13 @@
         <ul class="nav flex-column mb-auto">
             @if($loggedUser != false)
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link link-bi active" aria-current="page">
+                    <a href="" class="nav-link link-bi active" aria-current="page">
                         <i class="bi bi-house-fill me-1 fs-5"></i>
                         Página inicial
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="perfil.php?id={{$loggedUser->getId()}}" class="nav-link link-bi text-white">
+                    <a href="perfil.php?id={{$loggedUser->id}}" class="nav-link link-bi text-white">
                         <i class="bi bi-file-earmark-person-fill me-1 fs-5"></i>
                         Perfil
                     </a>
@@ -88,4 +88,4 @@
     </div>
 </aside>
 
-<script src="src/js/navbar/sideMenu.js"></script>
+<script src="{{asset("js/navbar/sideMenu.js")}}"></script>
