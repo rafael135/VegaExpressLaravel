@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -54,13 +57,13 @@ class LoginController extends Controller
                 $validLogin = false;
             }
 
-            if(count($password) == 0) {
+            if(strlen($password) == 0) {
                 $errors[count($errors)] = [
                     "input" => "password",
                     "error" => "Campo de Senha não preenchido!"
                 ];
                 $validLogin = false;
-            } else if(count($password) < 8) {
+            } else if(strlen($password) < 8) {
                 $errors[count($errors)] = [
                     "input" => "password",
                     "error" => "A senha deve ter no mínimo 8 caracteres!"
@@ -76,14 +79,15 @@ class LoginController extends Controller
                 //$emailExists = DB::table('users')->where("email", "=", $email)->get()->all();
 
                 if(Auth::attempt(["email" => $email, "password" => $password], $remember)) {
-                    $r->session()->regenerate();
+                    $r->session()->regenerate(true);
                     
                     $loggedUser = Auth::user();
 
                     return view("home", ["loggedUser" => $loggedUser]);
                     // AJAX: return true;
                 } else {
-                    return view("login", ["loggedUser" => false, "emailInfo" => "O e-mail informado não existe!"]);
+                    
+                    return view("login", ["loggedUser" => false, "errors" => "O e-mail informado não existe!"]);
                     // AJAX: return ["emailInfo" => "O e-mail informado não existe!"];
                 }
             } else {
@@ -102,25 +106,26 @@ class LoginController extends Controller
         $cpf = $r->post("cpf", false);
         $password = $r->post("password", false);
 
+        $cpf = str_replace([".", "-"], "", $cpf);
+
         $validRegister = true;
 
 
-        if(count($name) == 0) {
+        if(strlen($name) == 0) {
             $errors[count($errors)] = [
                 "input" => "name",
                 "error" => "Campo de Nome não preenchido!"
             ];
             $validRegister = false;
         }
-
-
-        if(count($cpf) == 0) {
+            
+        if(strlen($cpf) == 0) {
             $errors[count($errors)] = [
                 "input" => "cpf",
                 "error" => "Campo de CPF não preenchido!"
             ];
             $validRegister = false;
-        } else if(count($cpf) <> 11){
+        } else if(strlen($cpf) <> 11){
             $errors[count($errors)] = [
                 "input" => "cpf",
                 "error" => "CPF deve ter 11 caracteres!"
@@ -132,10 +137,12 @@ class LoginController extends Controller
                 "error" => "CPF inválido!"
             ];
             $validRegister = false;
+        } else {
+            
         }
 
         
-        if(count($email) == 0) {
+        if(strlen($email) == 0) {
             $errors[count($errors)] = [
                 "input" => "email",
                 "error" => "Campo de E-mail não preenchido!"
@@ -158,13 +165,13 @@ class LoginController extends Controller
         }
 
         
-        if(count($password) == 0) {
+        if(strlen($password) == 0) {
             $errors[count($errors)] = [
                 "input" => "password",
                 "error" => "Campo de Senha não preenchido!"
             ];
             $validRegister = false;
-        } else if(count($password) < 8) {
+        } else if(strlen($password) < 8) {
             $errors[count($errors)] = [
                 "input" => "password",
                 "error" => "A senha deve ter no mínimo 8 caracteres!"
@@ -176,19 +183,22 @@ class LoginController extends Controller
 
 
         if($validRegister == true) {
-            $newUser = new User([
+            $data = [
                 "name" => $name,
                 "email" => $email,
                 "cpf" => $cpf,
-                "password" => $password
-            ]);
+                "password" => Hash::make($password),
+                "token" => md5(time() . rand(0, 999) . time())
+            ];
+
+            $newUser = new User($data);
 
             $res = $newUser->save();
-            
             
 
             if($res == true) {
                 Auth::login($newUser);
+                $r->session()->regenerate(true);
                 return view("home", ["loggedUser" => self::getLoggedUser()]);
                 // AJAX: return true;
             } else {
@@ -199,9 +209,13 @@ class LoginController extends Controller
             return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
             // AJAX: return $errors;
         }
+    }
 
-
-
+    public function logout(Request $r) {
+        Auth::logout();
+        Session::flush();
+        
+        return view("login", ["loggedUser" => self::getLoggedUser()]);
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 }

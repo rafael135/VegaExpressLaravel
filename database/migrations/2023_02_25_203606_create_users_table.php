@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("password", 200);
             $table->string("token", 200);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

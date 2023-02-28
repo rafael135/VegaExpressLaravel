@@ -6,7 +6,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="index.php">VegaExpress</a>
+            <a class="navbar-brand" href="{{route("home")}}">VegaExpress</a>
             <ul class="navbar-nav mx-lg-0 ms-lg-auto mx-md-auto mb-lg-0">
                 <li class="nav-item">
                     @if($loggedUser != false)
@@ -42,7 +42,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
                 @if($loggedUser != false)
-                    <li><a class="dropdown-item" href="src/actions/logoutUsr_action.php">Sair</a></li>
+                    <li><a class="dropdown-item" href="{{route("auth.logout")}}">Sair</a></li>
                 @else
                     <li><a class="dropdown-item" href="{{route("auth.showLogin")}}">Entrar</a></li>
                 @endif

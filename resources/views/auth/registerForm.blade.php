@@ -1,6 +1,8 @@
-<form class="form-login p-0" id="form-registro" method="POST" action="{{route("api.register")}}">
+<form class="form-login p-0" id="form-registro" method="POST" action="{{route("auth.register")}}">
     <div class="container-fluid form-legend rounded-top p-2 fs-4 text-center">Registro</div>
     <div class="container-fluid p-0 m-0 d-flex flex-column justify-content-center h-auto px-3 my-3">
+        @csrf
+
         <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
         <input type="text"
