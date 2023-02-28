@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -46,6 +47,18 @@ class User extends Authenticatable
 
     public function products() {
         return $this->hasMany(Product::class, "id");
+    }
+
+
+    // Outro recurso “mágico” do laravel é o Mutator, que permite alterar o valor de alguma propriedade antes de entrar no banco de dados, quanto alterar no momento de retornar o valor.
+    public function setPasswordAtribute($value) {
+        $this->attributes["password"] = Hash::make($value);
+    }
+
+
+    public function verifyPassword($password): bool {
+        // 'getAuthPassword' => Retorna a senha do usuario no Banco de Dados
+        return Hash::check($password, $this->getAuthPassword());
     }
 
     

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -20,6 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("/users/add", [UserController::class, "insert"]);
+
+
+Route::post("/user/register", [LoginController::class, "register"])->name("api.register");
+Route::post("/user/login", [LoginController::class, "login"])->name("api.login");
+
+//Route::post("/users/add", [UserController::class, "insert"]);
 
 Route::post("/products/add", [ProductController::class, "insert"]);
+
+Route::post("/evaluations/products/add", [EvaluationController::class, "insert"]);

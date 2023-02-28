@@ -12,10 +12,10 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->loggedUser = false;
+        $this->loggedUser = LoginController::getLoggedUser();
     }
 
-    #Métodos_de_chamada_de_API() {
+    // Metodos para chamadas de API
     public function insert(Request $r) {
         $title = $r->post("title", false);
         $description = $r->post("description", false);
@@ -37,8 +37,8 @@ class ProductController extends Controller
             return ["success" => false];
         }
     }
-
-    # }
+    
+    
 
 
     public function getProduct(Request $r) {

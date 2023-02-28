@@ -44,7 +44,7 @@
                 @if($loggedUser != false)
                     <li><a class="dropdown-item" href="src/actions/logoutUsr_action.php">Sair</a></li>
                 @else
-                    <li><a class="dropdown-item" href="login.php">Entrar</a></li>
+                    <li><a class="dropdown-item" href="{{route("auth.showLogin")}}">Entrar</a></li>
                 @endif
             </ul>
         </div>

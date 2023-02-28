@@ -12,9 +12,14 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->loggedUser = false;
+        $this->loggedUser = LoginController::getLoggedUser();
     }
 
+    public function showUserProfile() {
+        
+    }
+
+    /*
     public function insert(Request $r) {
         $name = $r->post("name", false);
         $email = $r->post("email", false);
@@ -33,4 +38,5 @@ class UserController extends Controller
 
         return ["success" => $res];
     }
+    */
 }

@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "index"]);
 
-Route::get("/login", [LoginController::class, "login"]);
-Route::get("/register");
+Route::get("/login", [LoginController::class, "showLogin"])->name("auth.showLogin");
+Route::get("/register", [LoginController::class, "showRegister"])->name("auth.showRegister");
 
 Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("product.get");
 
