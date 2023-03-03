@@ -28,6 +28,7 @@ Route::post("/user/register", [LoginController::class, "register"])->name("api.r
 Route::post("/user/login", [LoginController::class, "login"])->name("api.login");
 //Route::get("/user/logout", [LoginController::class, "logout"])->name("api.logout");
 
+
 //Route::post("/users/add", [UserController::class, "insert"]);
 
 Route::post("/products/add", [ProductController::class, "insert"]);

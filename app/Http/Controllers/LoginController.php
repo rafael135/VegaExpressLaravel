@@ -141,6 +141,8 @@ class LoginController extends Controller
                 "error" => "CPF inválido!"
             ];
             $validRegister = false;
+        } else {
+            
         }
 
         //dd(is_numeric($cpf));
@@ -212,16 +214,13 @@ class LoginController extends Controller
             return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
             // AJAX: return $errors;
         }
-
-
-
     }
 
     public function logout(Request $r) {
         Auth::logout();
         Session::flush();
-    
-        return view("home", ["loggedUser" => self::getLoggedUser()]);
+        
+        return view("login", ["loggedUser" => self::getLoggedUser()]);
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 }

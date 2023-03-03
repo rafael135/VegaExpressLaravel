@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 <form class="form-login p-0" id="form-registro" method="POST" action="{{route("api.register")}}">
     @csrf
+=======
+<form class="form-login p-0" id="form-registro" method="POST" action="{{route("auth.register")}}">
+>>>>>>> 9b47ec95b516105f01a5e658f57ef87a21b6dcaf
     <div class="container-fluid form-legend rounded-top p-2 fs-4 text-center">Registro</div>
     <div class="container-fluid p-0 m-0 d-flex flex-column justify-content-center h-auto px-3 my-3">
+        @csrf
+
         <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
         <input type="text"

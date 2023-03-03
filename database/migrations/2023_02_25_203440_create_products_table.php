@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("title", 120);
             $table->text("description");
             $table->float("price");
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

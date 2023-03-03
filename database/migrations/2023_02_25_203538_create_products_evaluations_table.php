@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId("product_id");
             $table->integer("evaluations_qnt");
             $table->float("total_grade");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
