@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class LoginController extends Controller
 {
@@ -23,12 +26,16 @@ class LoginController extends Controller
     public function showLogin() {
         if(self::getLoggedUser() == false) {
             return view("login", ["loggedUser" => self::getLoggedUser(), "errors" => false]);
+        } else {
+            return view("home", ["loggedUser" => self::getLoggedUser()]);
         }
     }
 
     public function showRegister() {
         if(self::getLoggedUser() == false) {
             return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => false]);
+        } else {
+            return view("home", ["loggedUser" => self::getLoggedUser()]);
         }
     }
     /////////////////////////////////////////////////////////////////////
@@ -54,19 +61,20 @@ class LoginController extends Controller
                 $validLogin = false;
             }
 
-            if(count($password) == 0) {
+            if(strlen($password) == 0) {
                 $errors[count($errors)] = [
                     "input" => "password",
                     "error" => "Campo de Senha não preenchido!"
                 ];
                 $validLogin = false;
-            } else if(count($password) < 8) {
+            } else if(strlen($password) < 8) {
                 $errors[count($errors)] = [
                     "input" => "password",
                     "error" => "A senha deve ter no mínimo 8 caracteres!"
                 ];
                 $validLogin = false;
             }
+
             
             if($validLogin == true) {
             
@@ -74,16 +82,15 @@ class LoginController extends Controller
                 // 'exists' => Retorna verdadeiro ou falso se houve algum resultado do BD
                 // 'all' => Retorna todos os items de uma consulta no BD
                 //$emailExists = DB::table('users')->where("email", "=", $email)->get()->all();
+                $r->session()->regenerate();
 
                 if(Auth::attempt(["email" => $email, "password" => $password], $remember)) {
-                    $r->session()->regenerate();
-                    
                     $loggedUser = Auth::user();
 
                     return view("home", ["loggedUser" => $loggedUser]);
                     // AJAX: return true;
                 } else {
-                    return view("login", ["loggedUser" => false, "emailInfo" => "O e-mail informado não existe!"]);
+                    return view("login", ["loggedUser" => false, "emailInfo" => "O e-mail informado não existe!", "errors" => $errors]);
                     // AJAX: return ["emailInfo" => "O e-mail informado não existe!"];
                 }
             } else {
@@ -102,10 +109,12 @@ class LoginController extends Controller
         $cpf = $r->post("cpf", false);
         $password = $r->post("password", false);
 
+        $cpf = str_replace([".", "-"], "", $cpf);
+
         $validRegister = true;
 
 
-        if(count($name) == 0) {
+        if(strlen($name) == 0) {
             $errors[count($errors)] = [
                 "input" => "name",
                 "error" => "Campo de Nome não preenchido!"
@@ -114,13 +123,13 @@ class LoginController extends Controller
         }
 
 
-        if(count($cpf) == 0) {
+        if(strlen($cpf) == 0) {
             $errors[count($errors)] = [
                 "input" => "cpf",
                 "error" => "Campo de CPF não preenchido!"
             ];
             $validRegister = false;
-        } else if(count($cpf) <> 11){
+        } else if(strlen($cpf) <> 11){
             $errors[count($errors)] = [
                 "input" => "cpf",
                 "error" => "CPF deve ter 11 caracteres!"
@@ -134,8 +143,10 @@ class LoginController extends Controller
             $validRegister = false;
         }
 
+        //dd(is_numeric($cpf));
+
         
-        if(count($email) == 0) {
+        if(strlen($email) == 0) {
             $errors[count($errors)] = [
                 "input" => "email",
                 "error" => "Campo de E-mail não preenchido!"
@@ -158,13 +169,13 @@ class LoginController extends Controller
         }
 
         
-        if(count($password) == 0) {
+        if(strlen($password) == 0) {
             $errors[count($errors)] = [
                 "input" => "password",
                 "error" => "Campo de Senha não preenchido!"
             ];
             $validRegister = false;
-        } else if(count($password) < 8) {
+        } else if(strlen($password) < 8) {
             $errors[count($errors)] = [
                 "input" => "password",
                 "error" => "A senha deve ter no mínimo 8 caracteres!"
@@ -176,20 +187,22 @@ class LoginController extends Controller
 
 
         if($validRegister == true) {
-            $newUser = new User([
+            $data = [
                 "name" => $name,
                 "email" => $email,
                 "cpf" => $cpf,
-                "password" => $password
-            ]);
+                "password" => Hash::make($password),
+                "token" => md5(time() . rand(0, 999) . time())
+            ];
 
-            $res = $newUser->save();
-            
-            
+            User::create($data);
 
-            if($res == true) {
-                Auth::login($newUser);
-                return view("home", ["loggedUser" => self::getLoggedUser()]);
+            $r->session()->regenerate();
+            if(Auth::attempt(["email" => $email, "password" => $password], true)) {
+                
+                $loggedUser = Auth::user();
+
+                return view("home", ["loggedUser" => $loggedUser]);
                 // AJAX: return true;
             } else {
                 return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => true]);
@@ -202,6 +215,13 @@ class LoginController extends Controller
 
 
 
+    }
+
+    public function logout(Request $r) {
+        Auth::logout();
+        Session::flush();
+    
+        return view("home", ["loggedUser" => self::getLoggedUser()]);
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 }

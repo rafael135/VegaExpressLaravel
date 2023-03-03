@@ -16,13 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [HomeController::class, "index"]);
+
+Route::get("/", [HomeController::class, "index"])->name("home");
 
 Route::get("/login", [LoginController::class, "showLogin"])->name("auth.showLogin");
 Route::get("/register", [LoginController::class, "showRegister"])->name("auth.showRegister");
 
-Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("product.get");
+//Route::post("/user/register", [LoginController::class, "register"])->name("api.register");
+//Route::post("/user/login", [LoginController::class, "login"])->name("api.login");
+Route::get("/logout", [LoginController::class, "logout"])->name("api.logout");
 
+Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("product.get");
 Route::get("/products", [ProductController::class, "getUserProducts"]);
 
 Route::get("/search", [ProductController::class, "search"])->name("product.search");

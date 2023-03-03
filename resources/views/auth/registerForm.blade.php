@@ -1,4 +1,5 @@
 <form class="form-login p-0" id="form-registro" method="POST" action="{{route("api.register")}}">
+    @csrf
     <div class="container-fluid form-legend rounded-top p-2 fs-4 text-center">Registro</div>
     <div class="container-fluid p-0 m-0 d-flex flex-column justify-content-center h-auto px-3 my-3">
         <div class="mb-3">
