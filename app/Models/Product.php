@@ -19,6 +19,6 @@ class Product extends Model
 
 
     public function getAuthor() {
-        return $this->hasOne(User::class, "id", "author_id");
+        return $this->belongsTo(User::class, "id", "author_id");
     }
 }

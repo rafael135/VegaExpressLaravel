@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="produtos.php" class="nav-link link-bi text-white">
+                    <a href="{{route("user.products")}}" class="nav-link link-bi text-white">
                         <i class="bi bi-grid me-1 fs-5"></i>
                         Produtos
                     </a>

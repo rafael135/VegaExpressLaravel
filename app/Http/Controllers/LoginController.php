@@ -23,19 +23,23 @@ class LoginController extends Controller
     }
 
     // Metodos para mostrar a view de registro e login
-    public function showLogin() {
+    public function showLogin(Request $r) {
         if(self::getLoggedUser() == false) {
-            return view("login", ["loggedUser" => self::getLoggedUser(), "errors" => false]);
+            $errors = $r->input("errors", false);
+
+            return view("login", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
         } else {
-            return view("home", ["loggedUser" => self::getLoggedUser()]);
+            return redirect()->route("home");
         }
     }
 
-    public function showRegister() {
+    public function showRegister(Request $r) {
         if(self::getLoggedUser() == false) {
-            return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => false]);
+            $errors = $r->input("errors", false);
+
+            return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
         } else {
-            return view("home", ["loggedUser" => self::getLoggedUser()]);
+            return redirect()->route("home");
         }
     }
     /////////////////////////////////////////////////////////////////////
@@ -59,6 +63,12 @@ class LoginController extends Controller
                     "error" => "Formato de E-mail inválido!"
                 ];
                 $validLogin = false;
+            } else if(DB::table("users")->where("email", "=", $email)->exists() != true) {
+                $errors[count($errors)] = [
+                    "input" => "email",
+                    "error" => "O e-mail informado não existe!"
+                ];
+                $validLogin == false;
             }
 
             if(strlen($password) == 0) {
@@ -85,16 +95,19 @@ class LoginController extends Controller
                 $r->session()->regenerate();
 
                 if(Auth::attempt(["email" => $email, "password" => $password], $remember)) {
-                    $loggedUser = Auth::user();
+                    //$loggedUser = Auth::user();
 
-                    return view("home", ["loggedUser" => $loggedUser]);
+                    return redirect()->route("home");
+                    //return view("home", ["loggedUser" => $loggedUser]);
                     // AJAX: return true;
                 } else {
-                    return view("login", ["loggedUser" => false, "emailInfo" => "O e-mail informado não existe!", "errors" => $errors]);
+                    return redirect()->route("auth.showLogin", ["errors" => $errors]);
+                    //return view("login", ["loggedUser" => false, "emailInfo" => "", "errors" => $errors]);
                     // AJAX: return ["emailInfo" => "O e-mail informado não existe!"];
                 }
             } else {
-                return view("login", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
+                return redirect()->route("auth.showLogin", ["errors" => $errors]);
+                //return view("login", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
                 // AJAX: return $errors;
             }
         }
@@ -154,7 +167,7 @@ class LoginController extends Controller
                 "error" => "Campo de E-mail não preenchido!"
             ];
             $validRegister = false;
-        } else if(filter_var($email, FILTER_VALIDATE_EMAIL) != true) {
+        } else if(filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
             $errors[count($errors)] = [
                 "input" => "email",
                 "error" => "E-mail inválido!"
@@ -164,7 +177,7 @@ class LoginController extends Controller
             if(DB::table("users")->where("email", "=", $email)->exists() == true) {
                 $errors[count($errors)] = [
                     "input" => "email",
-                    "error" => "O E-mail informado já esta sendo utilizado!"
+                    "error" => "O E-mail informado já está sendo utilizado!"
                 ];
                 $validRegister = false;
             }
@@ -204,14 +217,21 @@ class LoginController extends Controller
                 
                 $loggedUser = Auth::user();
 
-                return view("home", ["loggedUser" => $loggedUser]);
+                return redirect()->route("home");
+                //return view("home", ["loggedUser" => $loggedUser]);
                 // AJAX: return true;
             } else {
-                return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => true]);
-                // AJAX: return false;
+                $errors[count($errors)] = [
+                    "login" => false
+                ];
+
+                return redirect()->route("auth.showRegister", ["errors" => $errors]);
+                //return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => true]);
+                // AJAX: return $errors;
             }
         } else {
-            return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
+            return redirect()->route("auth.showRegister", ["errors" => $errors]);
+            //return view("register", ["loggedUser" => self::getLoggedUser(), "errors" => $errors]);
             // AJAX: return $errors;
         }
     }
@@ -220,7 +240,8 @@ class LoginController extends Controller
         Auth::logout();
         Session::flush();
         
-        return view("login", ["loggedUser" => self::getLoggedUser()]);
+        return redirect()->route("home");
+        //return view("login", ["loggedUser" => self::getLoggedUser()]);
     }
     ///////////////////////////////////////////////////////////////////////////////////////
 }

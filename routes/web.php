@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,7 @@ Route::get("/logout", [LoginController::class, "logout"])->name("api.logout");
 
 Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("product.get");
 Route::get("/products", [ProductController::class, "getUserProducts"]);
+
+Route::get("/user/products", [UserController::class, "showUserProducts"])->name("user.products");
 
 Route::get("/search", [ProductController::class, "search"])->name("product.search");
