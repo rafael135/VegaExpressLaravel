@@ -17,7 +17,7 @@
                                         <span class="products-price ms-auto">R$ @php echo(number_format($product->price, 2, ",", ".")); @endphp</span>
                                     </div>
                                 </div>
-                                <a class="stretched-link" href="produto.php?id=@php echo($product->id); @endphp"></a>
+                                <a class="stretched-link" href="{{route("product.get", ["id" => $product->id])}}"></a>
                             </div>
                         </div>
                     @endforeach

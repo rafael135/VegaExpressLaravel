@@ -33,6 +33,23 @@ class UserController extends Controller
         return view("userProducts", ["loggedUser" => $this->loggedUser ,"produtos" => $products]);
     }
 
+    public function getUserProducts(Request $r) {
+        $id = $r->id;
+
+        if($id == null) {
+            return false;
+        }
+
+        $user = User::find($id);
+        
+        if($user != false) {
+            $products = $user->products;
+            return $products;
+        } else {
+            return false;
+        }
+    }
+
     /*
     public function insert(Request $r) {
         $name = $r->post("name", false);

@@ -42,10 +42,14 @@ class ProductController extends Controller
 
 
     public function getProduct(Request $r) {
-        $id = $r->get("id", null);
+        $id = $r->id;
 
-        if($id == null) {
-            return view("home", ["loggedUser" => $this->loggedUser]);
+        if($id != null) {
+            $produto = Product::find($id);
+
+            return view("product", ["loggedUser" => LoginController::getLoggedUser(), "produto" => $produto]);
+        } else {
+            return redirect()->back();
         }
     }
 
@@ -73,7 +77,7 @@ class ProductController extends Controller
         }
 
         if($searchTerm == false) {
-            return view("home", ["loggedUser" => $this->loggedUser]);
+            return redirect()->back();
         }
 
         $products = [];
@@ -105,5 +109,13 @@ class ProductController extends Controller
         ];
 
         return view("search", $data);
+    }
+
+    public function showCreateProduct(Request $r) {
+        if($this->loggedUser != false) {
+            return view("createProduct", ["loggedUser" => $this->loggedUser]);
+        } else {
+            return redirect()->route("auth.showLogin");
+        }
     }
 }

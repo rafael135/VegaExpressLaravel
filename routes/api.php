@@ -33,4 +33,7 @@ Route::post("/user/login", [LoginController::class, "login"])->name("api.login")
 
 Route::post("/products/add", [ProductController::class, "insert"]);
 
-Route::post("/evaluations/products/add", [EvaluationController::class, "insert"]);
+Route::get("/user/products/{id}", [UserController::class, "getUserProducts"])->name("api.user.getProducts");
+
+Route::post("/products/evaluations/add", [EvaluationController::class, "insert"]);
+Route::get("/products/evaluations/get/{id}", [EvaluationController::class, "getEvaluationById"]);

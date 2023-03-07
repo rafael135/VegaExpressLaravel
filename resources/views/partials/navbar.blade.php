@@ -1,20 +1,20 @@
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid justify-content-center justify-content-md-end">
+    <div class="container-fluid justify-content-center justify-content-md-end h-100 p-0">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="{{route("home")}}">VegaExpress</a>
-            <ul class="navbar-nav mx-lg-0 ms-lg-auto mx-md-auto mb-lg-0">
+        <div class="collapse navbar-collapse h-100" id="navbarTogglerDemo01">
+            <a class="navbar-brand px-3" href="{{route("home")}}">VegaExpress</a>
+            <ul class="navbar-nav mx-lg-0 ms-lg-auto mx-md-auto mb-lg-0 h-100 d-flex justify-content-end align-items-center">
                 <li class="nav-item">
                     @if($loggedUser != false)
-                        <a href="" id="btn-user-sideBar" class="nav-link">
+                        <a href="" id="btn-user-sideBar" class="nav-link d-flex justify-content-center align-items-center">
                             <i id="btn-user-icon" class="bi bi-person-circle"></i>
                         </a>
                     @else
-                        <a href="" id="btn-user-sideBar" class="nav-link">
+                        <a href="" id="btn-user-sideBar" class="nav-link d-flex justify-content-center align-items-center">
                             <i id="btn-user-icon" class="bi bi-box-arrow-right text-danger"></i>
                         </a>
                     @endif

@@ -31,5 +31,6 @@ Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("pro
 Route::get("/products", [ProductController::class, "getUserProducts"]);
 
 Route::get("/user/products", [UserController::class, "showUserProducts"])->name("user.products");
+Route::get("/user/product/create", [ProductController::class, "showCreateProduct"])->name("user.create.product");
 
 Route::get("/search", [ProductController::class, "search"])->name("product.search");

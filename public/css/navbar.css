@@ -11,6 +11,10 @@ nav.navbar {
     padding: 0;
 }
 
+nav.navbar .container-fluid {
+    
+}
+
 nav .navbar-brand {
     font-weight: 500;
     font-size: 1.5rem;
@@ -27,7 +31,7 @@ nav .navbar-nav {
 }
 
 nav .navbar-nav .nav-item {
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     transition: all ease-out 160ms;
 }
 
@@ -37,6 +41,11 @@ nav .navbar-nav .nav-item:hover {
 
 nav .navbar-nav .nav-item:hover .bi {
     color: #FFF;
+}
+
+#btn-user-sideBar {
+    height: 70px;
+    width: 70px;
 }
 
 #btn-user-sideBar:hover i {
