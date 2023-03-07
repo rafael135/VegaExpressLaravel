@@ -20,12 +20,13 @@
                 </div>
             </div>
             <div class="col-lg-4">
-            	<form class="form-floating">
-					<label for="imgsInput">Imagens</label>
-                	<input type="file" class="form-control" accept="image/*" multiple id="imgsInput" name="imgsInput" placeholder="name@example.com" value="test@example.com">
-              </form>
+                <div class="form-floating">
+				    <label for="imgsInput">Imagens</label>
+                    <input type="file" class="form-control" accept="image/*" multiple id="imgsInput" name="imgsInput" placeholder="name@example.com" value="test@example.com">
+                </div>
             </div>
         </div>
 
     </form>
+    <script src="{{asset("js/usrProducts/createProduct.js")}}"></script>
 </div>

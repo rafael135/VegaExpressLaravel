@@ -37,6 +37,7 @@
 
 .search-bar form {
     border: 1px solid rgb(84, 87, 90);
+    border-radius: 8px;
 }
 
 .search-bar #btn-collapse {

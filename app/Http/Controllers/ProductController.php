@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -20,17 +21,26 @@ class ProductController extends Controller
         $title = $r->post("title", false);
         $description = $r->post("description", false);
         $price = $r->post("price", false);
-        $author_id = $r->post("author_id", false);
+        $imgs = $r->post("imgs", false);
+        $author_id = Auth::user()->id;
 
-        if($title && $description && $price && $author_id) {
-            $newProduct = new Product();
+        if($author_id == null) {
+            return false;
+        }
 
-            $newProduct->setAttribute("title", $title);
-            $newProduct->setAttribute("description", $description);
-            $newProduct->setAttribute("price", $price);
-            $newProduct->setAttribute("author_id", $author_id);
+        
 
-            $res = $newProduct->save();
+        if($title && $description && $price && $author_id && $imgs) {
+
+
+
+            $res = Product::create([
+                "title" => $title,
+                "description" => $description,
+                "price" => $price,
+                "imgs" => $imgs,
+                "author_id" => $author_id
+            ]);
 
             return ["success" => $res];
         } else {

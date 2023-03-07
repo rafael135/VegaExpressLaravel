@@ -1,6 +1,6 @@
 <div class="container-fluid p-0 mt-4 mb-4 px-4">
     <div class="search-bar">
-        <form class="p-0 m-0" method="get" action="{{route("product.search")}}">
+        <form class="p-0 m-0 bg-body-secondary" method="get" action="{{route("product.search")}}">
             <div class="d-flex row align-items-center m-0">
                 <div class="col-md-8 col-lg-10 p-0">
                     <div class="form-floating">
