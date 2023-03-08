@@ -31,7 +31,7 @@ Route::post("/user/login", [LoginController::class, "login"])->name("api.login")
 
 //Route::post("/users/add", [UserController::class, "insert"]);
 
-Route::post("/products/create", [ProductController::class, "insert"]);
+Route::post("/products/create", [ProductController::class, "insert"])->name("api.user.createProduct");
 
 
 Route::get("/user/products/{id}", [UserController::class, "getUserProducts"])->name("api.user.getProducts");

@@ -96,8 +96,6 @@
 
 
 
-
-
 .container-create-product {
     background-color: rgb(54, 57, 60);
     padding: 12px;
@@ -110,26 +108,37 @@
     margin-block-end: 0;
 }
 
-.form-create-product #title {
+.form-create-product #title,
+.form-create-product #price {
     border: 0;
     background-color: transparent;
     color: #FFF;
     max-width: 60%;
     border-radius: 0;
-    border-bottom: 1px solid #495057;
+    border-bottom: 1px solid #676f77;
 }
-.form-create-product #title:focus {
+.form-create-product #title.is-invalid,
+.form-create-product #price.is-invalid {
+    border-bottom-color: #B02A37;
+}
+
+.form-create-product #title:focus,
+.form-create-product #price:focus {
     box-shadow: none;
 }
 
-.form-create-product #price {
-    border: 0;
-    background-color: transparent;
+
+.form-create-product button.btn-create-product {
+    border: none;
     color: #FFF;
-    max-width: 30%;
-    border-radius: 0;
-    border-bottom: 1px solid #495057;
+    padding: 6px 36px;
+    transition: all ease 150ms;
 }
-.form-create-product #price:focus {
-    box-shadow: none;
+
+.form-create-product button.btn-create-product:hover {
+    background-color: rgb(18, 100, 62) !important;
+}
+
+.form-create-product button.btn-create-product:active {
+    color: #DDD;
 }

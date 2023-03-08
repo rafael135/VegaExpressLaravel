@@ -13,13 +13,85 @@ let titleInput = document.getElementById("title");
 let priceInput = document.getElementById("price");
 let descriptionInput = document.getElementById("description");
 let imgsInput = document.getElementById("imgsInput");
+let formProduct = document.getElementById("form-create-product");
+
+formProduct.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let valid = true;
+
+    let inputs = document.querySelectorAll("input");
+
+    inputs.forEach((input) => {
+        console.log(checkInput(input));
+        if(checkInput(input) == false) {
+            valid = false;
+        };
+    });
+
+    // Codigo para verificar se algum campo esta incorreto ou nao preenchido
+
+    if(valid == true) {
+        tryAddProduct();
+    }
+    
+});
+
+
+function checkInput(input) {
+    let reqs = input.getAttribute("data-reqs");
+    if(reqs == "" || reqs == null) {
+        return true;
+    }
+    reqs = reqs.split("|");
+    let i = 0;
+
+    while(i < reqs.length) {
+        if(reqs[i] == "required") {
+            if(input.value == "" || input.value == null) {
+                addErrorMsg(input, "Campo não preenchido!")
+                return false;
+            }
+        }
+        else if(reqs[i].includes("minLength")) {
+            let val = reqs[i].split("=");
+            val = val[1];
+
+            if(input.value.length < val) {
+                addErrorMsg(input, `Mínimo de ${val} caracteres!`);
+                return false;
+            }
+        }
+        i++;
+    }
+
+
+
+    return true;
+}
+
+function addErrorMsg(input, msg) {
+    input.classList.add("is-invalid");
+
+    let parent = input.parentNode;
+    let msgBox = parent.querySelector("small");
+    msgBox.innerText = `${msg}`;
+    msgBox.classList.remove("d-none");
+
+
+
+    input.addEventListener("change", (e) => {
+        input.classList.remove("is-invalid");
+        msgBox.classList.add("d-none");        
+    });
+}
+
 
 
 
 async function createProduct(product = false) {
-
     if(product != false) {
-        let req = await fetch("127.0.0.1:8000/api/products/create", { // URL da requisicao
+        let req = await fetch(createRoute, { // URL da requisicao
             method: "POST", // Metodo da requisicao
             body: JSON.stringify({ // Dados a serem enviados em formato json
                 title: product.title,
@@ -71,11 +143,4 @@ function tryAddProduct() {
     } else {
         // Exibe mensagem de erro na tela e depois de um tempo recarrega a pagina
     }
-}
-
-
-function checkData() {
-    // Codigo para verificar se algum campo esta incorreto ou nao preenchido
-
-    tryAddProduct();
 }
