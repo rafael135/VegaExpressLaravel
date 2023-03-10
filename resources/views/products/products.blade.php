@@ -40,16 +40,23 @@
         @if($products != false && count($products) > 0)
             <nav class="mx-auto mt-2" aria-label="...">
                 <ul class="pagination">
-                    <li class="page-item <?=($pagina == 0) ? "disabled" : ""?>">
-                        <a class="page-link">Previous</a>
+                    <li class="page-item @php echo(($pagina == 0) ? 'disabled' : ''); @endphp ">
+                        <a class="page-link" href="{{route("product.search", ["search" => $searchTerm, "orderDate" => $orderDate, "qteItems" => $qteItems, "pagina" => $pagina - 1])}}"><</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item @php echo(($pagina - 1 < 0) ? 'disabled' : ''); @endphp">
+                        <a class="page-link" href="{{route("product.search", ["search" => $searchTerm, "orderDate" => $orderDate, "qteItems" => $qteItems, "pagina" => $pagina - 1])}}">@php if($pagina - 1 < 0) { echo("#"); } else { echo($pagina); } @endphp</a>
+                    </li>
+
                     <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="#">2</a>
+                        <a class="page-link" href="{{route("product.search", ["search" => $searchTerm, "orderDate" => $orderDate, "qteItems" => $qteItems, "pagina" => $pagina])}}">{{$pagina + 1}}</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+
+                    <li class="page-item @php if($pagina + 1 > $maxPaginas) { echo("disabled"); } @endphp">
+                        <a class="page-link" href="{{route("product.search", ["search" => $searchTerm, "orderDate" => $orderDate, "qteItems" => $qteItems, "pagina" => $pagina + 1])}}">{{$pagina + 2}}</a>
+                    </li>
+
+                    <li class="page-item @php if($pagina + 1 > $maxPaginas) { echo("disabled"); } @endphp">
+                        <a class="page-link" href="{{route("product.search", ["search" => $searchTerm, "orderDate" => $orderDate, "qteItems" => $qteItems, "pagina" => $pagina + 1])}}">></a>
                     </li>
                 </ul>
             </nav>

@@ -22,23 +22,14 @@ class ProductController extends Controller
         $description = $r->post("description", false);
         $price = $r->post("price", false);
         $imgs = $r->post("imgs", false);
-        $author_id = Auth::user()->id;
+        $author_id = $r->post("author_id", false);
 
-        if($author_id == null) {
-            return false;
-        }
-
-        
-
-        if($title && $description && $price && $author_id && $imgs) {
-
-
-
+        if($title && $description && $price && $author_id) {
             $res = Product::create([
                 "title" => $title,
                 "description" => $description,
                 "price" => $price,
-                "imgs" => $imgs,
+                "imgs" => " ",
                 "author_id" => $author_id
             ]);
 
@@ -92,21 +83,35 @@ class ProductController extends Controller
 
         $products = [];
 
+        $maxProducts = 0;
+
         if($orderDate != "asc" || $orderDate != "desc") {
-            $products = DB::table("products")->where("title", "like", "%$searchTerm%")
+            $products = DB::table("products")
+                ->where("title", "like", "%$searchTerm%")
                 ->offset($offset)
                 ->limit($qteItems)
             ->get();
+
+            $maxProducts = DB::table('products')
+                ->where("title", "like", "%$searchTerm%")
+            ->get();
         } else {
-            $products = DB::table("products")->where("title", "like", "%$searchTerm%")
+            $products = DB::table("products")
+                ->where("title", "like", "%$searchTerm%")
                 ->orderBy("updated_at", $orderDate)
                 ->offset($offset)
                 ->limit($qteItems)
             ->get();
-        }
 
+            $maxProducts = DB::table('products')
+                ->where("title", "like", "%$searchTerm%")
+                ->orderBy("updated_at" . $orderDate)
+            ->get();
+        }
+        $maxPaginas = floor($maxProducts->count() / floatval($qteItems));
         $products = $products->all();
 
+        
         
 
         $data = [
@@ -114,6 +119,7 @@ class ProductController extends Controller
             "orderDate" => $orderDate,
             "qteItems" => $qteItems,
             "pagina" => $pagina,
+            "maxPaginas" => $maxPaginas,
             "products" => $products,
             "loggedUser" => $this->loggedUser
         ];

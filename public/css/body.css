@@ -53,6 +53,12 @@
     border-radius: 0;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    background-color: #495057;
+    color: #FFF;
+}
+.search-bar #searchInput:focus {
+    box-shadow: none;
+    border-color: #495057;
 }
 
 .search-bar #searchInput.opened {

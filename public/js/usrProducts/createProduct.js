@@ -1,6 +1,7 @@
 class Product {
 
-    constructor(title, price, description, imgs) {
+    constructor(author_id ,title, price, description, imgs) {
+        this.author_id = author_id;
         this.title = title;
         this.price = price;
         this.description = description;
@@ -97,7 +98,8 @@ async function createProduct(product = false) {
                 title: product.title,
                 price: product.price,
                 description: product.description,
-                imgs: product.imgs
+                imgs: product.imgs,
+                author_id: product.author_id
             }),
 
             headers: {
@@ -106,6 +108,8 @@ async function createProduct(product = false) {
         });
 
         let res = req.json();
+
+        console.log(res);
 
         if(res.success != false) {
             return true;
@@ -128,6 +132,7 @@ function tryAddProduct() {
     // Codigo para checar as imagens
 
     let produto = new Product(
+        author_id,
         title,
         price,
         description,
