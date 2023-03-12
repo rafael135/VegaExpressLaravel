@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="perfil.php?id={{$loggedUser->id}}" class="nav-link link-bi text-white">
+                    <a href="{{route("user.profile")}}" class="nav-link link-bi text-white">
                         <i class="bi bi-file-earmark-person-fill me-1 fs-5"></i>
                         Perfil
                     </a>
@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="config.php" class="nav-link link-bi text-white">
+                    <a href="{{route("user.config")}}" class="nav-link link-bi text-white">
                         <i class="bi bi-person-fill-gear me-1 fs-5"></i>
                         Configurações
                     </a>

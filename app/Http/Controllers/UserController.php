@@ -17,8 +17,20 @@ class UserController extends Controller
         $this->loggedUser = LoginController::getLoggedUser();
     }
 
-    public function showUserProfile(Request $r) {
-        
+    public function showConfig(Request $r) {
+        if($this->loggedUser == false) {
+            return redirect()->route("home");
+        }
+
+        return view("userConfig", ["loggedUser" => $this->loggedUser]);
+    }
+
+    public function showProfile(Request $r) {
+        if($this->loggedUser == false) {
+            return redirect()->route("home");
+        }
+
+        return view("userProfile", ["loggedUser" => $this->loggedUser]);
     }
 
     public function showUserProducts(Request $r) {
