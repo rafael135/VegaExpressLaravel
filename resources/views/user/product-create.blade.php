@@ -25,7 +25,7 @@
             <div class="col-lg-4 d-flex flex-column">
                 <div class="flex-fill">
 				    <label for="imgsInput">Imagens</label>
-                    <input type="file" class="form-control" accept="image/*" multiple id="imgsInput" data-reqs="" name="imgsInput">
+                    <input type="file" class="form-control" accept="image/*" multiple id="imgsInput" data-reqs="" name="imgsInput[]">
                     <small class="form-text text-danger error-msg d-none"></small>
                 </div>
                 <div class="flex-fill d-flex align-self-end align-items-end">
@@ -39,6 +39,7 @@
     </form>
     <script type="text/javascript">
         let createRoute = "{{route("api.user.createProduct")}}";
+        let updateImgRoute = {{route("")}}
         let author_id = {{$loggedUser->id}};
     </script>
     <script src="{{asset("js/usrProducts/createProduct.js")}}"></script>

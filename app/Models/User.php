@@ -49,6 +49,10 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, "author_id", "id");
     }
 
+    public function addresses() {
+        $this->hasMany(Address::class, "user_id", "id");
+    }
+
 
     // Outro recurso “mágico” do laravel é o Mutator, que permite alterar o valor de alguma propriedade antes de entrar no banco de dados, quanto alterar no momento de retornar o valor.
     public function setPasswordAtribute($value) {

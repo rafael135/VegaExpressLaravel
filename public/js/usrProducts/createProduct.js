@@ -92,13 +92,15 @@ function addErrorMsg(input, msg) {
 
 async function createProduct(product = false) {
     if(product != false) {
+        var form = new FormData();
+
+
         let req = await fetch(createRoute, { // URL da requisicao
             method: "POST", // Metodo da requisicao
             body: JSON.stringify({ // Dados a serem enviados em formato json
                 title: product.title,
                 price: product.price,
                 description: product.description,
-                imgs: product.imgs,
                 author_id: product.author_id
             }),
 
@@ -109,7 +111,23 @@ async function createProduct(product = false) {
 
         let res = req.json();
 
-        console.log(res);
+        if(res.success != false) {
+            let reqImg = await fetch(updateImgRoute, {
+                method: "POST",
+                body: {
+                    id: res.id,
+                    imgs: product.imgs
+                },
+
+                headers: {
+                    "content-type": "multipart/form-data"
+                }
+            });
+
+            res = reqImg.json;
+
+            console.log(res);
+        }
 
         if(res.success != false) {
             return true;
@@ -127,7 +145,7 @@ function tryAddProduct() {
     let title = titleInput.value;
     let price = priceInput.value;
     let description = descriptionInput.value;
-    let imgs = "";
+    let imgs = imgsInput.files;
 
     // Codigo para checar as imagens
 

@@ -22,7 +22,9 @@ class UserController extends Controller
             return redirect()->route("home");
         }
 
-        return view("userConfig", ["loggedUser" => $this->loggedUser]);
+        $menuOpt = $r->get("menuOption", false);
+
+        return view("userConfig", ["loggedUser" => $this->loggedUser, "menuOption" => $menuOpt]);
     }
 
     public function showProfile(Request $r) {

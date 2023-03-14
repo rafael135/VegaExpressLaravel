@@ -6,14 +6,47 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     private $loggedUser;
+    //private $storagePath;
+    private $productImagesPath;
 
     public function __construct()
     {
         $this->loggedUser = LoginController::getLoggedUser();
+        $this->productImagesPath = config("filesystems.disks.public.root") . "/products";
+    }
+
+    public function updateImage(Request $r) {
+        $id = $r->input("id");
+        $imgs = $r->files;
+
+        return $id;
+
+        if(ImageController::checkFormat($imgs) != true) {
+            return ["success" => false];
+        }
+
+        $productsPath = $this->productImagesPath . "/$id";
+
+        $file = Product::find($id);
+
+        if(Storage::directoryExists($productsPath) == false) {
+            Storage::makeDirectory($productsPath);
+        }
+
+
+        $uploadResult = ImageController::uploadFile($imgs, $productsPath);
+
+        $fileNames = implode(";", $uploadResult);
+
+        $file->update([
+            "imgs" => $fileNames
+        ]);
+        
     }
 
     // Metodos para chamadas de API
@@ -21,7 +54,7 @@ class ProductController extends Controller
         $title = $r->post("title", false);
         $description = $r->post("description", false);
         $price = $r->post("price", false);
-        $imgs = $r->post("imgs", false);
+        $imgs = $r->allFiles();
         $author_id = $r->post("author_id", false);
 
         if($title && $description && $price && $author_id) {
@@ -29,10 +62,8 @@ class ProductController extends Controller
                 "title" => $title,
                 "description" => $description,
                 "price" => $price,
-                "imgs" => " ",
                 "author_id" => $author_id
             ]);
-
             return ["success" => $res];
         } else {
             return ["success" => false];

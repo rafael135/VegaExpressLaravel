@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route("user.config")}}" class="nav-link link-bi text-white">
+                    <a href="{{route("user.config", ["menuOption" => "profile"])}}" class="nav-link link-bi text-white">
                         <i class="bi bi-person-fill-gear me-1 fs-5"></i>
                         Configurações
                     </a>

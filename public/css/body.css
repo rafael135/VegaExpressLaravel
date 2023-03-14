@@ -158,4 +158,65 @@
     margin-top: calc(((100vh - 70px) - 80vh) / 2);
     margin-bottom: calc(((100vh - 70px) - 80vh) / 2);
     height: 80vh;
+    display: flex;
+}
+
+
+
+.list-group-config_page {
+
+}
+.list-group-config_page a {
+    display: flex;
+    align-items: center;
+}
+.list-group-config_page a svg {
+    width: 24px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.user-profile-config,
+.user-security-config {
+    padding: 20px;
+}
+
+.user-profile-config {
+    display: flex;
+    flex-direction: column;
+}
+.user-profile-config .user-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.user-profile-config .user-img svg {
+    width: 192px;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid #ADB5BD;
+}
+.user-profile-config .user-name {
+    display: flex;
+}
+.user-profile-config .user-name .form-floating {
+    width: 100%;
+}
+.user-profile-config .user-name input,
+.user-profile-config .user-email input {
+    border: 0;
+    background-color: transparent;
+    color: #FFF;
+    max-width: 60%;
+    border-radius: 0;
+    border-bottom: 1px solid #676f77;
+}
+.user-profile-config .user-name input:focus,
+.user-profile-config .user-email input:focus {
+    box-shadow: none;
+    border-color: #308be6;
+}
+
+.user-security-config {
+
 }

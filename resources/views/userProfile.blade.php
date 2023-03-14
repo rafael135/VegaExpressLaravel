@@ -2,7 +2,7 @@
 
 @include("partials.navbar", ["loggedUser" => $loggedUser])
 
-@include("user.profile-info")
+@include("user.profile-info", ["loggedUser" => $loggedUser, "menuOption" => $menuOption])
 
 
 
