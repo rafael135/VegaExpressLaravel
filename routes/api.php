@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::post("/user/update/avatar", [UserController::class, "updateAvatar"])->name("api.user.update.avatar");
 
 Route::post("/user/register", [LoginController::class, "register"])->name("api.register");
 Route::post("/user/login", [LoginController::class, "login"])->name("api.login");

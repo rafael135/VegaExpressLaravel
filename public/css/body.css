@@ -203,7 +203,8 @@
     width: 100%;
 }
 .user-profile-config .user-name input,
-.user-profile-config .user-email input {
+.user-profile-config .user-email input,
+.user-profile-config .user-cpf input {
     border: 0;
     background-color: transparent;
     color: #FFF;
@@ -211,12 +212,147 @@
     border-radius: 0;
     border-bottom: 1px solid #676f77;
 }
+@media(max-width: 991px) {
+    .user-profile-config .user-name input,
+    .user-profile-config .user-email input,
+    .user-profile-config .user-cpf input {
+        max-width: 80%;
+    }
+}
+
 .user-profile-config .user-name input:focus,
-.user-profile-config .user-email input:focus {
+.user-profile-config .user-email input:focus,
+.user-profile-config .user-cpf input:focus {
     box-shadow: none;
     border-color: #308be6;
 }
 
+
+.user-profile-config .user-change-avatar {
+    overflow: hidden;
+    border: 1px solid #495057;
+
+    border-radius: 0.375rem;
+    
+    background-color: #212529;
+
+    display: flex;
+    flex-direction: column;
+}
+.user-profile-config .user-change-avatar form {
+    margin-block-end: 0;
+}
+.user-profile-config .user-change-avatar label {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #495057;
+    display: block;
+}
+.user-profile-config .user-change-avatar input {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+
+    border: 0;
+}
+.user-profile-config .user-change-avatar input:focus {
+    box-shadow: none;
+}
+
 .user-security-config {
 
+}
+.user-security-config .user-email input {
+    border: 0;
+    background-color: transparent;
+    color: #FFF;
+    max-width: 60%;
+    border-radius: 0;
+    border-bottom: 1px solid #676f77;
+}
+.user-security-config .user-email input:focus {
+    box-shadow: none;
+    border-color: #308be6;
+}
+.user-security-config .user-email input.is-invalid {
+    border-bottom-color: #B02A37;
+}
+.user-security-config .user-email input.is-valid {
+    border-bottom-color: #75B798;
+}
+.user-security-config .user-email .valid-feedback {
+    display: flex;
+}
+
+
+.user-addresses-config {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+.user-addresses-config .btn-add-address {
+    border-radius: 0;
+}
+.user-addresses-config .address-add {
+
+}
+.user-addresses-config .addresses {
+    flex: 1;
+}
+.user-addresses-config .addresses .address {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(77, 79, 82);
+    transition: all ease-in-out 150ms;
+}
+.user-addresses-config .addresses .address:hover {
+    transform: scale(1.01);
+    border-radius: 8px;
+}
+.user-addresses-config .addresses .address .active {
+    display: flex;
+    justify-content: center;
+}
+
+.user-addresses-config .addresses .address .active-svg {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+    border: 1px solid #676f77;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-addresses-config .addresses .address .active-svg .circle {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 50%;
+    
+}
+.address .active-svg .circle.active {
+    background-color: #75B798;
+}
+.address .active-svg .circle.disabled {
+    background-color: #B02A37;
+}
+
+
+.user-addresses-config .addresses .addresses-head {
+    padding: 10px 0;
+}
+.user-addresses-config .addresses .addresses-head {
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+
+    border-bottom: 1px solid rgb(114, 117, 120); /* rgb(77, 79, 82); */
+}
+
+.modal-content form {
+    margin-block-end: 0;
 }

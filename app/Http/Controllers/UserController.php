@@ -84,4 +84,13 @@ class UserController extends Controller
         return ["success" => $res];
     }
     */
+
+    public function updateAvatar(Request $r) {
+        $avatar = $_FILES["avatar"];
+        //$avatar = $r->file("avatar", false);
+
+        if($avatar) {
+            return ["success" => $avatar];
+        }
+    }
 }

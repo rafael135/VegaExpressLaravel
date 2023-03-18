@@ -10,17 +10,26 @@
         @endif
     </div>
 
-    <div class="user-name">
+    <div class="user-change-avatar">
+        <form id="formUpdateAvatar" action="{{route("api.user.update.avatar")}}" enctype="multipart/form-data" method="POST">
+            @csrf
+            <label for="avatar">Selecionar nova foto de avatar</label>
+            <input type="file" class="form-control" id="avatar" name="avatar"/>
+        </form>
+        <script src="{{asset("js/profileConfig/updateAvatar.js")}}"></script>
+    </div>
+
+    <div class="user-name my-1">
         <div class="form-floating">
             <input type="text" class="form-control" data-reqs="required|minLength=3" value="{{$loggedUser->name}}" id="name" name="name" placeholder="Nome Completo">
             <label for="name">Nome Completo</label>
         </div>
     </div>
 
-    <div class="user-email">
+    <div class="user-cpf">
         <div class="form-floating">
-            <input type="email" readonly class="form-control" data-reqs="required" value="{{$loggedUser->email}}" id="email" name="email" placeholder="E-mail Registrado">
-            <label for="email">E-mail Registrado</label>
+            <input type="text" class="form-control" readonly value="{{$loggedUser->cpf}}" id="cpf" name="cpf" placeholder="CPF">
+            <label for="cpf">CPF</label>
         </div>
     </div>
 </div>

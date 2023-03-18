@@ -1,6 +1,5 @@
 <div class="container d-flex flex-row bg-body-tertiary p-0 container-profile-config">
-    <div class="col-lg-3 profile-config-options">
-        <!-- Hover added -->
+    <div class="col-lg-3 col-md-4 profile-config-options">
         <div class="list-group list-group-config_page rounded-0">
             <a href="{{route("user.config", ["menuOption" => "profile"])}}" class="list-group-item py-4 fs-4 list-group-item-action @if($menuOption == false || $menuOption == 'profile') active @endif">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -24,7 +23,7 @@
         </div>
     </div>
 
-    <div class="col-lg-9 bg-body-secondary profile-config-page">
+    <div class="col-lg-9 col-md-8 bg-body-secondary profile-config-page">
             @if($menuOption == "profile")
                 @include("user.config.userProfileConfig", ["loggedUser" => $loggedUser])
             @elseif($menuOption == "security")
