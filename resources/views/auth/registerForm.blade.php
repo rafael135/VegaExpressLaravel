@@ -1,4 +1,4 @@
-<form class="form-login p-0" id="form-registro" method="POST" action="{{route("api.register")}}">
+<form class="form-login p-0 pb-2" id="form-registro" method="POST" action="{{route("api.register")}}">
     @csrf
     <div class="container-fluid form-legend rounded-top p-2 fs-4 text-center">Registro</div>
     <div class="container-fluid p-0 m-0 d-flex flex-column justify-content-center h-auto px-3 my-3">
@@ -31,6 +31,11 @@
 
         <button type="submit" class="btn btn-dark">Registrar</button>
     </div>
+
+    <a href="{{route("auth.showLogin")}}" class="link-existent_account mx-auto d-flex flex-column">
+        Já tem uma conta? Clique aqui!
+        <div class="mx-auto"></div>
+    </a>
 </form>
 
 <script src="https://unpkg.com/imask"></script>

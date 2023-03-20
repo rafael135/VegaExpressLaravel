@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -27,6 +28,8 @@ Route::post("/user/update/avatar", [UserController::class, "updateAvatar"])->nam
 Route::post("/user/register", [LoginController::class, "register"])->name("api.register");
 Route::post("/user/login", [LoginController::class, "login"])->name("api.login");
 //Route::get("/user/logout", [LoginController::class, "logout"])->name("api.logout");
+
+Route::post("/user/address/add", [AddressController::class, "create"])->name("api.user.address.add");
 
 
 //Route::post("/users/add", [UserController::class, "insert"]);

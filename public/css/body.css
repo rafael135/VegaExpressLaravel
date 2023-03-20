@@ -3,6 +3,31 @@
     width: 100vw;
 }
 
+.link-existent_account {
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    max-width: max-content;
+    color: #FFF;
+    line-height: 1.2;
+    transition: all ease-in-out 200ms;
+}
+.link-existent_account div {
+    align-content: center;
+    display: flex;
+    content: "";
+    background-color: #DDD;
+    height: 2px;
+    width: 0;
+    transition: all ease-in-out 200ms;
+}
+.link-existent_account:hover {
+    color: #DDD;
+}
+.link-existent_account:hover div {
+    width: 100%;
+}
+
 .form-login {
     width: 380px;
     height: auto;
@@ -303,9 +328,10 @@
 }
 .user-addresses-config .addresses .address {
     text-align: center;
+    font-size: 18px;
     padding: 10px 0;
     border-bottom: 1px solid rgb(77, 79, 82);
-    transition: all ease-in-out 150ms;
+    transition: all ease-in-out 100ms;
 }
 .user-addresses-config .addresses .address:hover {
     transform: scale(1.01);
@@ -339,6 +365,34 @@
 }
 .address .active-svg .circle.disabled {
     background-color: #B02A37;
+}
+
+.user-addresses-config .addresses .address .actions .action-edit,
+.user-addresses-config .addresses .address .actions .action-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.address .actions .action-edit svg {
+    width: 20px;
+    height: auto;
+    fill: #676f77;
+    transition: all ease-in-out 150ms;
+}
+.address .actions .action-edit:hover svg {
+    fill: #88929c;
+    transform: scale(1.1);
+}
+.address .actions .action-delete svg {
+    width: 20px;
+    height: auto;
+    fill: #B02A37;
+    transition: all ease-in-out 150ms;
+}
+.address .actions .action-delete:hover svg {
+    fill: #df293b;
+    transform: scale(1.1);
 }
 
 

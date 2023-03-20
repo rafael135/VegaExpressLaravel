@@ -32,15 +32,42 @@
                 <h1 class="modal-title fs-5 text-center" id="addressAddModalLabel">Adicionar novo endereço</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form id="form-address" action="{{route("api.user.address.add")}}" method="POST">
                 <div class="modal-body">
-                    ...
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cep" name="cep" placeholder="000000-000">
+                        <label for="cep">CEP</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="bairro" name="bairro">
+                        <label for="bairro">Bairro</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="rua" name="rua">
+                        <label for="rua">Rua</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="numero" name="numero">
+                        <label for="numero">Número</label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Adicionar</button>
+                    <button type="button" id="btn-add" class="btn btn-success">Adicionar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/imask"></script>
+<script>
+    IMask(
+        document.getElementById("cep"),
+        {
+            mask: "00000-000"
+        }
+        )
+</script>
+
+<script src="{{asset("js/profileConfig/addAddress.js")}}"></script>
