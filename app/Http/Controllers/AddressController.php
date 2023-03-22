@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class AddressController extends Controller
 {
@@ -73,7 +74,7 @@ class AddressController extends Controller
                 return ["success" => false, "errors" => $errors];
             }
         } else {
-            return ["success" => false, "error" => "Todos os campos devem ser preenchidos!"];
+            return ["success" => false, "errors" => "Todos os campos devem ser preenchidos!"];
         }
     }
 
@@ -81,11 +82,15 @@ class AddressController extends Controller
         if($this->loggedUser == false) {
             return redirect()->route("auth.showLogin");
         }
+        
+        $id = $r->input("id", false);
+        $id = Route::current()->parameter("id");
 
-        $id = $r->get("id", false);
+        $id = ($id == null) ? false : $id;
         
         if($id) {
-            // Deleta o endereço
+            $address = Address::find($id);
+            $address->forceDelete();
         }
         
 

@@ -1,7 +1,8 @@
 <div class="user-profile-config">
     <div class="user-img">
         @if($loggedUser->avatar != null)
-            <img src="{{$loggedUser->avatar}}" alt=""/>
+            <!-- 'storage' => aponta para a pasta 'storage' principal do projeto -->
+            <img src="{{url("storage")}}/{{$loggedUser->avatar}}" alt=""/>
         @else
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

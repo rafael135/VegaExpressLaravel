@@ -37,18 +37,22 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="cep" name="cep" placeholder="000000-000">
                         <label for="cep">CEP</label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="bairro" name="bairro">
                         <label for="bairro">Bairro</label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="rua" name="rua">
                         <label for="rua">Rua</label>
+                        <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="numero" name="numero">
                         <label for="numero">Número</label>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

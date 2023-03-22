@@ -1,6 +1,8 @@
 let submitBtn = document.getElementById("btn-add");
 let form = document.getElementById("form-address");
 
+let modal = document.getElementById("addressAddModal");
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -35,6 +37,53 @@ async function addAddress() {
 
     let res = req.json();
 
-    console.log(res);
+    res.then((response) => {
+        if(response.success != false) {
+            modal.removeAttribute("role");
+            modal.classList.remove("show");
+            modal.style.display = "none";
+    
+            //window.location.reload();
+        } else {
+            showErrors(response.errors);
+        }
+    });
+}
 
+
+
+function showErrors(errors) {
+    if(Array.isArray(errors)) {
+        errors.forEach(e => {
+            let input = document.getElementById(e.input);
+            let error = e.error;
+
+            let feedback = input.parentElement.querySelector("div");
+            feedback.innerHTML = error;
+            feedback.style.display = "block";
+
+            input.addEventListener("change", removeFeedback);
+
+
+        });
+    } else {
+        let modalInputs = modal.querySelectorAll(".form-floating");
+
+        modalInputs.forEach((e) => {
+            let feedback = e.querySelector(".invalid-feedback");
+            feedback.innerHTML = errors;
+            let input = e.querySelector("input");
+            feedback.style.display = "block";
+            
+
+            input.addEventListener("change", removeFeedback);
+        });
+    }
+
+    
+}
+
+function removeFeedback(input) {
+    input.target.parentElement.querySelector("div").style.display = "none";
+    input.target.removeEventListener("change", removeFeedback);
 }

@@ -215,6 +215,12 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+.user-profile-config .user-img img {
+    width: 192px;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid #ADB5BD;
+}
 .user-profile-config .user-img svg {
     width: 192px;
     height: auto;

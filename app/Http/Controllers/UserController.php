@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Directory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Testing\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
+use Nette\Utils\FileInfo;
+use SplFileInfo;
+
+use function PHPUnit\Framework\directoryExists;
 
 class UserController extends Controller
 {
@@ -85,12 +92,46 @@ class UserController extends Controller
     }
     */
 
+
     public function updateAvatar(Request $r) {
-        $avatar = $_FILES["avatar"];
-        //$avatar = $r->file("avatar", false);
+        $avatar = $r->file("avatar", false);
 
         if($avatar) {
-            return ["success" => $avatar];
+            $idUser = $this->loggedUser->id;
+            $user = User::find($idUser);
+
+            $valid = in_array($avatar->extension(), ["png", "jpg", "jpeg"]);
+
+            $savePath = "public/users/$idUser";
+
+            
+            
+            if($valid == true) {
+                if(Storage::disk("public")->exists($user->avatar)) {
+                    Storage::disk("public")->delete($user->avatar);
+                }
+
+                $path = "";
+                
+                if(directoryExists($savePath)) {
+                    $avatar->storeAs($savePath, "avatar." . $avatar->getClientOriginalExtension());
+                } else {
+                    mkdir($savePath, 0755, true);
+                    $avatar->storeAs($savePath, "avatar." . $avatar->getClientOriginalExtension());
+                }
+
+                $path = "users/$idUser/avatar." . $avatar->getClientOriginalExtension();
+
+                
+                
+                
+    
+                $user->avatar = $path;
+                $user->save();
+                return ["success" => true];
+            } else {
+                return ["success" => false, "error" => "Formato inválido!"];
+            }
         }
     }
 }
