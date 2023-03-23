@@ -30,6 +30,7 @@ Route::post("/user/login", [LoginController::class, "login"])->name("api.login")
 //Route::get("/user/logout", [LoginController::class, "logout"])->name("api.logout");
 
 Route::post("/user/address/add", [AddressController::class, "create"])->name("api.user.address.add");
+Route::post("/user/address/edit", [AddressController::class, "edit_action"])->name("api.user.address.edit");
 
 
 //Route::post("/users/add", [UserController::class, "insert"]);

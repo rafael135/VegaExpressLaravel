@@ -83,7 +83,7 @@ class AddressController extends Controller
             return redirect()->route("auth.showLogin");
         }
         
-        $id = $r->input("id", false);
+        //$id = $r->input("id", false);
         $id = Route::current()->parameter("id");
 
         $id = ($id == null) ? false : $id;
@@ -102,10 +102,23 @@ class AddressController extends Controller
             return redirect()->route("auth.showLogin");
         }
 
-        $id = $r->get("id", false);
+        $id = Route::current()->parameter("id", false);
+        $userId = $this->loggedUser->id;
 
         if($id) {
+            $address = Address::find($id);
+            if($address != null) {
+                if($address->user_id == $userId) {
+                    return view("userAddressEdit", ["loggedUser" => $this->loggedUser, "address" => $address]);
+                } else {
+                    return redirect()->route("user.config");
+                }
+            }
             // Retorna a view para editar o endereço
         }
+    }
+
+    public function edit_action(Request $r) {
+        
     }
 }

@@ -32,7 +32,12 @@
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 @if($loggedUser != false)
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    @if($loggedUser->avatar != null)
+                        <img src="{{url("storage")}}/{{$loggedUser->avatar}}" alt="" width="32" height="32" class="rounded-circle me-2">
+                    @else
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    @endif
+                    
                 @else
                     <i id="img-usr" class="bi bi-person-circle me-2"></i>
                 @endif

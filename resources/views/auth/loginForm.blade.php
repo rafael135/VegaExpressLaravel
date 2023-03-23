@@ -1,4 +1,4 @@
-<form class="form-login p-0 pb-2" id="form-registro" method="POST" action="{{route("api.login")}}">
+<form class="form-login p-0 pb-3" id="form-registro" method="POST" action="{{route("api.login")}}">
     @csrf
     <div class="container-fluid form-legend rounded-top p-2 fs-4 text-center">Login</div>
     <div class="container-fluid p-0 m-0 d-flex flex-column justify-content-center h-auto px-3 my-3">
