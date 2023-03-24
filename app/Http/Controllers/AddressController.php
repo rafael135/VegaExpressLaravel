@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 class AddressController extends Controller
@@ -119,6 +120,28 @@ class AddressController extends Controller
     }
 
     public function edit_action(Request $r) {
-        
+        if($this->loggedUser == false) {
+            return redirect()->route("auth.showLogin");
+        }
+
+        $id = $r->input("id", false);
+
+        if($id != false) {
+            $data = $r->validate([
+                "cep" => "required|min:9",
+                "bairro" => "required",
+                "rua" => "required",
+                "numero" => "required"
+            ]);
+
+            $data["cep"] = str_replace("-", "", $data["cep"]);
+
+            $address = Address::find($id);
+
+            $address->update($data);
+            $address->save();
+
+            return redirect()->route("user.config");
+        }
     }
 }

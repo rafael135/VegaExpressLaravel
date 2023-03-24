@@ -50,7 +50,7 @@
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="numero" name="numero">
+                        <input type="number" class="form-control" minlength="1" id="numero" name="numero">
                         <label for="numero">Número</label>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -68,9 +68,9 @@
 <script>
     IMask(
         document.getElementById("cep"),
-        {
-            mask: "00000-000"
-        }
+            {
+                mask: "00000-000"
+            }
         )
 </script>
 
