@@ -39,7 +39,7 @@ class UserController extends Controller
             return redirect()->route("home");
         }
 
-        return view("userProfile", ["loggedUser" => $this->loggedUser]);
+        return view("userProfile", ["loggedUser" => $this->loggedUser, "menuOption" => "profile"]);
     }
 
     public function showUserProducts(Request $r) {

@@ -20,7 +20,7 @@
 
                         <div class="col-lg-10 d-flex justify-content-center align-items-center p-0 m-0">
                             
-                            <a type="button" href="{{route("user.create.product")}}" class="btn btn-primary btn-addProduct rounded-0 w-100">
+                            <a type="button" href="{{route("user.product.create")}}" class="btn btn-primary btn-addProduct rounded-0 w-100">
                                 <i class="bi bi-plus-circle fs-4"></i>
                             </a>
                         </div>

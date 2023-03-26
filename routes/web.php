@@ -31,10 +31,11 @@ Route::get("/logout", [LoginController::class, "logout"])->name("api.logout");
 Route::get("/product/{id}", [ProductController::class, "getProduct"])->name("product.get");
 Route::get("/products", [ProductController::class, "getUserProducts"]);
 
+Route::get("/user/product/create", [ProductController::class, "showCreateProduct"])->name("user.product.create");
 Route::get("/user/config", [UserController::class, "showconfig"])->name("user.config");
 Route::get("/user/profile", [UserController::class, "showProfile"])->name("user.profile");
 Route::get("/user/products", [UserController::class, "showUserProducts"])->name("user.products");
-Route::get("/user/product/create", [ProductController::class, "showCreateProduct"])->name("user.create.product");
+
 
 Route::get("/user/addresses/delete/{id}", [AddressController::class, "delete"])->name("user.address.delete");
 Route::get("/user/addresses/edit/{id}", [AddressController::class, "edit"])->name("user.address.edit");

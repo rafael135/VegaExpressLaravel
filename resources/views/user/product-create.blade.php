@@ -39,7 +39,7 @@
     </form>
     <script type="text/javascript">
         let createRoute = "{{route("api.user.createProduct")}}";
-        let updateImgRoute = {{route("")}}
+        let updateImgRoute = ""
         let author_id = {{$loggedUser->id}};
     </script>
     <script src="{{asset("js/usrProducts/createProduct.js")}}"></script>
