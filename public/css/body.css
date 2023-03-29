@@ -346,6 +346,8 @@
 .user-addresses-config .addresses .address .active {
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .user-addresses-config .addresses .address .active-svg {
@@ -477,6 +479,11 @@
     font-size: 28px;
     color: #DDD;
 }
+.container-product .product-details .author-card {
+    
+}
+
+
 .container-product .product-details .price {
     font-size: 40px;
     color: #DDD;

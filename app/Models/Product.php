@@ -19,7 +19,7 @@ class Product extends Model
     use HasFactory;
 
 
-    public function getAuthor() {
+    public function Author() {
         return $this->belongsTo(User::class, "author_id", "id");
     }
 }

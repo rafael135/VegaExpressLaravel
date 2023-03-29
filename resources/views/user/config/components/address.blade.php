@@ -1,5 +1,5 @@
 <div class="address row">
-    <div class="active col-lg-1">
+    <div class="active col-lg-1" onclick="updateAddressStatus(this)" data-id="{{$data->id}}" data-status="{{$data->active}}">
         <div class="active-svg">
             <div class="circle {{($data->active != false) ? 'active' : 'disabled'}}"></div>
         </div>

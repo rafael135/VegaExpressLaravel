@@ -24,7 +24,7 @@ formProduct.addEventListener("submit", (e) => {
     let inputs = document.querySelectorAll("input");
 
     inputs.forEach((input) => {
-        console.log(checkInput(input));
+        //console.log(checkInput(input));
         if(checkInput(input) == false) {
             valid = false;
         };
@@ -111,6 +111,10 @@ async function createProduct(product = false) {
 
         let res = req.json();
 
+        /* 
+        ////////// Faltando implementar
+
+
         if(res.success != false) {
             let reqImg = await fetch(updateImgRoute, {
                 method: "POST",
@@ -125,9 +129,10 @@ async function createProduct(product = false) {
             });
 
             res = reqImg.json;
+            
 
             console.log(res);
-        }
+        }*/
 
         if(res.success != false) {
             return true;

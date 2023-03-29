@@ -29,6 +29,21 @@
 
         <div class="product-details">
             <div class="title">{{$produto->title}}</div>
+            <div class="author-card">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{url("storage")}}/{{$author->avatar}}" class="img-fluid rounded-start" alt=""/>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title fs-4">{{$author->name}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="actions">
                 <div class="price">R$ {{number_format($produto->price, 2, ',', '.')}}</div>
                 <a href="" id="addToCart" class="add ms-auto">
@@ -40,7 +55,6 @@
             </div>
         </div>
     </div>
-
     <div class="description-container bg-body-tertiary">
         <div class="title">Descrição</div>
         <div class="description">

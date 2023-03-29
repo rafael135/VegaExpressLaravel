@@ -39,5 +39,6 @@ Route::get("/user/products", [UserController::class, "showUserProducts"])->name(
 
 Route::get("/user/addresses/delete/{id}", [AddressController::class, "delete"])->name("user.address.delete");
 Route::get("/user/addresses/edit/{id}", [AddressController::class, "edit"])->name("user.address.edit");
+Route::post("/user/address/update-status", [AddressController::class, "updateStatus"])->name("user.address.updateStatus");
 
 Route::get("/search", [ProductController::class, "search"])->name("product.search");

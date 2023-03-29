@@ -144,4 +144,32 @@ class AddressController extends Controller
             return redirect()->route("user.config");
         }
     }
+
+    public function updateStatus(Request $r) {
+        if($this->loggedUser == false) {
+            return ["success" => false];
+        }
+
+
+        $id = $r->post("id", false);
+        $status = $r->post("status", false);
+
+        if($id && $status) {
+            $activeAddress = Address::where("active", true)->first();
+            
+            if($activeAddress != null) {
+                $activeAddress->active = "0";
+                $activeAddress->save();
+            }
+
+            $address = Address::find($id);
+
+            $address->active = $status;
+            $address->save();
+
+            return ["success" => true];
+        } else {
+            return ["success" => false];
+        }
+    }
 }

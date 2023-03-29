@@ -71,7 +71,11 @@
             {
                 mask: "00000-000"
             }
-        )
+        );
+
+        let updateRoute = "{{route('user.address.updateStatus')}}";
+        let csrfToken = "{{csrf_token()}}";
 </script>
 
+<script src="{{asset("js/profileConfig/updateAddressStatus.js")}}"></script>
 <script src="{{asset("js/profileConfig/addAddress.js")}}"></script>

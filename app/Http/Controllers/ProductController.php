@@ -78,8 +78,9 @@ class ProductController extends Controller
 
         if($id != null) {
             $produto = Product::find($id);
+            $author = $produto->Author;
 
-            return view("product", ["loggedUser" => LoginController::getLoggedUser(), "produto" => $produto]);
+            return view("product", ["loggedUser" => LoginController::getLoggedUser(), "produto" => $produto, "author" => $author]);
         } else {
             return redirect()->back();
         }

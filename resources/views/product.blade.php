@@ -2,7 +2,7 @@
 
 @include("partials.navbar", ["loggedUser" => $loggedUser])
 
-@include("products.productPage", ["produto" => $produto])
+@include("products.productPage", ["produto" => $produto, "author" => $author])
 
 
 
