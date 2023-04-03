@@ -4,6 +4,8 @@
 
 @include("partials.searchBar")
 
+@include("partials.newProducts")
+
 
 
 @include("partials.footer")

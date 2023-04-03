@@ -56,6 +56,16 @@ nav .navbar-nav .nav-item:hover .bi {
     font-size: 32px !important;
 }
 
+#asideUser-menu #img-usr {
+    font-size: 32px;
+}
+#asideUser-menu #sideBar-menu {
+    min-height: 70px;
+}
+#asideUser-menu #sideBar-menu .dropdown {
+    margin-top: auto;
+    margin-bottom: auto;
+}
 #asideUser-menu {
     z-index: 999;
     display: flex;
@@ -83,7 +93,7 @@ nav .navbar-nav .nav-item:hover .bi {
 }
 
 ul.nav .nav-link {
-    
+    transition: all ease-in-out 150ms;
 }
 
 ul.nav .nav-link.link-bi {
@@ -91,11 +101,13 @@ ul.nav .nav-link.link-bi {
 }
 
 ul.nav .nav-link:hover {
+    border-radius: 12px;
     background-color: #1b79d1;
     color: #FFF;
 }
 
 ul.nav .nav-link.active {
+    border-radius: 12px;
     background-color: #0c59bd;
     color: #FFF;
 }

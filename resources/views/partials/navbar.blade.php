@@ -56,7 +56,7 @@
         @if($loggedUser != false)
             <hr/>
         @endif
-        <ul class="nav flex-column mb-auto">
+        <ul class="nav flex-column">
             @if($loggedUser != false)
                 <li class="nav-item">
                     <a href="" class="nav-link link-bi active" aria-current="page">

@@ -39,6 +39,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title fs-4">{{$author->name}}</h5>
+                                <a class="stretched-link" href="{{route("user.profile", ["id" => $author->id])}}"></a>
                             </div>
                         </div>
                     </div>

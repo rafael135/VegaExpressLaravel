@@ -13,5 +13,12 @@
                 </div>
             @endif
         </div>
+
+        <button id="btnSendEmail" onclick="sendEmail(this)" class="btn btn-dark">Enviar Confirmação</button>
     </div>
+    <script>
+        let sendRoute = "{{route('user.email.confirm.send')}}";
+        let csrfToken = "{{csrf_token()}}";
+    </script>
+    <script src="{{asset("js/profileConfig/sendConfirmEmail.js")}}"></script>
 </div>
