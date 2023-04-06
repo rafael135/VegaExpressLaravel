@@ -1,3 +1,13 @@
+/*
+body::-webkit-scrollbar {
+    width: 10px;
+    color: #0d6efd;
+}
+body::-webkit-scrollbar-track {
+    color: #308be6;
+}
+*/
+
 .container-loginPage {
     height: calc(100vh - 70px);
     width: 100vw;
@@ -299,7 +309,7 @@
     border: 0;
     background-color: transparent;
     color: #FFF;
-    max-width: 60%;
+    max-width: 80%;
     border-radius: 0;
     border-bottom: 1px solid #676f77;
 }
@@ -317,6 +327,9 @@
     display: flex;
 }
 
+.user-security-config .user-email #btnSendEmail {
+    border-radius: 0;
+}
 
 .user-addresses-config {
     padding: 24px;
@@ -538,4 +551,25 @@
     margin-right: 12px;
     margin-bottom: 12px;
     padding: 24px 8px;
+}
+
+
+
+
+.container-lastProducts {
+    /*border: 1px solid #5a5a5a;*/
+    border-radius: 8px;
+    background-color: rgba(102, 107, 112, 0.65);
+    
+}
+.container-lastProducts .title {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 6px 0;
+    background-color: #282d31;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-lastProducts .title h2 {
+
 }

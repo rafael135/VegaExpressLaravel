@@ -4,7 +4,7 @@
 
 @include("partials.searchBar")
 
-@include("partials.newProducts")
+@include("partials.newProducts", ["products" => $lastProducts])
 
 
 

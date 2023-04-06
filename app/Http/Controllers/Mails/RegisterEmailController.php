@@ -48,7 +48,9 @@ class RegisterEmailController extends Controller
             return redirect()->route("auth.showLogin");
         }
 
-        $token = Route::current()->parameter("token");
+        $token = $r->get("token", null);
+
+        //dd($token);
 
         if($token == null) {
             // Retorno para a rota 'home' com uma mensagem de erro
